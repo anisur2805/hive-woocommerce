@@ -1,6 +1,6 @@
-; (function ($) {
-
+;(function ($) {
     $(document).on('click', '.woocommerce-pagination a', function (e) {
+        // prevent default action
         e.preventDefault();
 
         //Make wordpress ajax
@@ -24,7 +24,7 @@
         };
 
 
-        //Call the ajax
+        //Call the ajax for pagination 
         $.post($ajaxurl, $data, function (response) {
             response = JSON.parse(response);
             $('nav.woocommerce-pagination').html(response.pagination);
@@ -36,6 +36,9 @@
 
     );
 
+    /**
+     * Filter product 
+     */
     $(document).ready(function () {
         $(".woocommerce-ordering").off("change", "select.orderby").on("change", "select.orderby", function (e) {
             e.preventDefault();
@@ -54,18 +57,7 @@
                 $('ul.products.columns-3').html(response.html);
                 $('.woocommerce-result-count').remove();
             }), 'json';
-
         });
-
-
-
-
     });
-
-
-
-
-
-
 
 })(jQuery);
